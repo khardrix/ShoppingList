@@ -1,0 +1,155 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity">
+
+    <TextView
+        android:id="@+id/txtView_one"
+        android:layout_width="350dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:text=""
+        android:textAlignment="center"
+        app:layout_constraintBottom_toTopOf="@+id/txtView_two"
+        app:layout_constraintEnd_toEndOf="@+id/txtView_two"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="@+id/txtView_two"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/txtView_two"
+        android:layout_width="350dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="47dp"
+        android:text=""
+        android:textAlignment="center"
+        app:layout_constraintBottom_toTopOf="@+id/txtView_three"
+        app:layout_constraintEnd_toEndOf="@+id/txtView_three"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="@+id/txtView_three"
+        app:layout_constraintTop_toBottomOf="@+id/txtView_one" />
+
+    <TextView
+        android:id="@+id/txtView_three"
+        android:layout_width="350dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="48dp"
+        android:text=""
+        android:textAlignment="center"
+        app:layout_constraintBottom_toTopOf="@+id/txtView_four"
+        app:layout_constraintEnd_toEndOf="@+id/txtView_four"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="@+id/txtView_four"
+        app:layout_constraintTop_toBottomOf="@+id/txtView_two" />
+
+    <TextView
+        android:id="@+id/txtView_four"
+        android:layout_width="350dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="48dp"
+        android:text=""
+        android:textAlignment="center"
+        app:layout_constraintBottom_toTopOf="@+id/txtView_five"
+        app:layout_constraintEnd_toEndOf="@+id/txtView_five"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="@+id/txtView_five"
+        app:layout_constraintTop_toBottomOf="@+id/txtView_three" />
+
+    <TextView
+        android:id="@+id/txtView_five"
+        android:layout_width="350dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="48dp"
+        android:text=""
+        android:textAlignment="center"
+        app:layout_constraintBottom_toTopOf="@+id/txtView_six"
+        app:layout_constraintEnd_toEndOf="@+id/txtView_six"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="@+id/txtView_six"
+        app:layout_constraintTop_toBottomOf="@+id/txtView_four" />
+
+    <TextView
+        android:id="@+id/txtView_six"
+        android:layout_width="350dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="48dp"
+        android:text=""
+        android:textAlignment="center"
+        app:layout_constraintBottom_toTopOf="@+id/txtView_seven"
+        app:layout_constraintEnd_toEndOf="@+id/txtView_seven"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="@+id/txtView_seven"
+        app:layout_constraintTop_toBottomOf="@+id/txtView_five" />
+
+    <TextView
+        android:id="@+id/txtView_seven"
+        android:layout_width="350dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="48dp"
+        android:text=""
+        android:textAlignment="center"
+        app:layout_constraintBottom_toTopOf="@+id/txtView_eight"
+        app:layout_constraintEnd_toEndOf="@+id/txtView_eight"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="@+id/txtView_eight"
+        app:layout_constraintTop_toBottomOf="@+id/txtView_six" />
+
+    <TextView
+        android:id="@+id/txtView_eight"
+        android:layout_width="350dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="48dp"
+        android:text=""
+        android:textAlignment="center"
+        app:layout_constraintBottom_toTopOf="@+id/txtView_nine"
+        app:layout_constraintEnd_toEndOf="@+id/txtView_nine"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="@+id/txtView_nine"
+        app:layout_constraintTop_toBottomOf="@+id/txtView_seven" />
+
+    <TextView
+        android:id="@+id/txtView_nine"
+        android:layout_width="350dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="48dp"
+        android:text=""
+        android:textAlignment="center"
+        app:layout_constraintBottom_toTopOf="@+id/txtView_ten"
+        app:layout_constraintEnd_toEndOf="@+id/txtView_ten"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="@+id/txtView_ten"
+        app:layout_constraintTop_toBottomOf="@+id/txtView_eight" />
+
+    <TextView
+        android:id="@+id/txtView_ten"
+        android:layout_width="350dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="48dp"
+        android:layout_marginBottom="20dp"
+        android:text=""
+        android:textAlignment="center"
+        app:layout_constraintBottom_toTopOf="@+id/btn_addItem"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txtView_nine" />
+
+    <Button
+        android:id="@+id/btn_addItem"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/add_item"
+        android:textStyle="bold"
+        android:textAlignment="center"
+        android:onClick="launchSecondActivity"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txtView_ten"
+        app:layout_constraintBottom_toBottomOf="parent" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
