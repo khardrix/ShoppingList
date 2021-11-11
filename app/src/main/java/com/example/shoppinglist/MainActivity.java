@@ -6,16 +6,17 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
-import android.widget.Button;
 import android.widget.TextView;
+
+import java.util.ArrayList;
+
 
 public class MainActivity extends AppCompatActivity {
 
     private static final String LOG_TAG = MainActivity.class.getSimpleName();
-    private TextView txtDisplay1, txtDisplay2, txtDisplay3, txtDisplay4, txtDisplay5,
-        txtDisplay6, txtDisplay7, txtDisplay8, txtDisplay9, txtDisplay10;
-    private TextView currentTxtDisplay;
-    public static final int TEXT_REQUEST = 1; // <-possible problem?
+    public static final int TEXT_REQUEST = 1;
+    private ArrayList<TextView> textViews = new ArrayList<>();
+    private ArrayList<String> items = new ArrayList<>();
 
 
     @Override
@@ -26,68 +27,24 @@ public class MainActivity extends AppCompatActivity {
         Log.d(LOG_TAG, "-------");
         Log.d(LOG_TAG, "onCreate");
 
-        // Initialize all the textView variables.
-        // possible to not need these?
-        txtDisplay1 = findViewById(R.id.txtView_one);
-        txtDisplay2 = findViewById(R.id.txtView_two);
-        txtDisplay3 = findViewById(R.id.txtView_three);
-        txtDisplay4 = findViewById(R.id.txtView_four);
-        txtDisplay5 = findViewById(R.id.txtView_five);
-        txtDisplay6 = findViewById(R.id.txtView_six);
-        txtDisplay7 = findViewById(R.id.txtView_seven);
-        txtDisplay8 = findViewById(R.id.txtView_eight);
-        txtDisplay9 = findViewById(R.id.txtView_nine);
-        txtDisplay10 = findViewById(R.id.txtView_ten);
+        textViews.add(findViewById(R.id.txtView_one));
+        textViews.add(findViewById(R.id.txtView_two));
+        textViews.add(findViewById(R.id.txtView_three));
+        textViews.add(findViewById(R.id.txtView_four));
+        textViews.add(findViewById(R.id.txtView_five));
+        textViews.add(findViewById(R.id.txtView_six));
+        textViews.add(findViewById(R.id.txtView_seven));
+        textViews.add(findViewById(R.id.txtView_eight));
+        textViews.add(findViewById(R.id.txtView_nine));
+        textViews.add(findViewById(R.id.txtView_ten));
 
-        // initialize the currentTxtDisplay to the first empty textView
-        if(txtDisplay1.getText().toString().isEmpty()){
-            currentTxtDisplay = findViewById(R.id.txtView_one);
-        } else if(txtDisplay2.getText().toString().isEmpty()){
-            currentTxtDisplay = findViewById(R.id.txtView_two);
-        } else if(txtDisplay3.getText().toString().isEmpty()){
-            currentTxtDisplay = findViewById(R.id.txtView_three);
-        } else if(txtDisplay4.getText().toString().isEmpty()){
-            currentTxtDisplay = findViewById(R.id.txtView_four);
-        } else if(txtDisplay5.getText().toString().isEmpty()){
-            currentTxtDisplay = findViewById(R.id.txtView_five);
-        } else if(txtDisplay6.getText().toString().isEmpty()){
-            currentTxtDisplay = findViewById(R.id.txtView_six);
-        } else if(txtDisplay7.getText().toString().isEmpty()){
-            currentTxtDisplay = findViewById(R.id.txtView_seven);
-        } else if(txtDisplay8.getText().toString().isEmpty()){
-            currentTxtDisplay = findViewById(R.id.txtView_eight);
-        } else if(txtDisplay9.getText().toString().isEmpty()){
-            currentTxtDisplay = findViewById(R.id.txtView_nine);
-        } else {
-            currentTxtDisplay = findViewById(R.id.txtView_ten);
+        if(savedInstanceState != null) {
+            items = (ArrayList<String>) savedInstanceState.getSerializable("array");
         }
 
-        // TEST TO SEE IF currentTxtDisplay IS ITERATING
-        Log.d(LOG_TAG, "currentTxtDisplay = " + currentTxtDisplay.getId());
-
-        // Restore the saved state.
-        // See onSaveInstanceState() for what gets saved.
-        if (savedInstanceState != null) {
-            boolean isVisible = savedInstanceState.getBoolean("itemToAdd_visible");
-            // Show both the header and the message views. If isVisible is
-            // false or missing from the bundle, use the default layout.
-            if (isVisible) {
-                txtDisplay1.setVisibility(View.VISIBLE);
-                txtDisplay2.setVisibility(View.VISIBLE);
-                txtDisplay3.setVisibility(View.VISIBLE);
-                txtDisplay4.setVisibility(View.VISIBLE);
-                txtDisplay5.setVisibility(View.VISIBLE);
-                txtDisplay6.setVisibility(View.VISIBLE);
-                txtDisplay7.setVisibility(View.VISIBLE);
-                txtDisplay8.setVisibility(View.VISIBLE);
-                txtDisplay9.setVisibility(View.VISIBLE);
-                txtDisplay10.setVisibility(View.VISIBLE);
-                currentTxtDisplay.setText(savedInstanceState
-                        .getString("itemToAdd_text"));
-                currentTxtDisplay.setVisibility(View.VISIBLE);
-            }
+        for(int i = 0; i < items.size(); i++) {
+            textViews.get(i).setText(items.get(i));
         }
-
     }
 
 
@@ -105,28 +62,29 @@ public class MainActivity extends AppCompatActivity {
         if (requestCode == TEXT_REQUEST) {
             if (resultCode == RESULT_OK) {
                 String itemToAdd = data.getStringExtra(SecondActivity.EXTRA_ITEM);
-                // mReplyHeadTextView.setVisibility(View.VISIBLE); <- not needed
-                currentTxtDisplay.setText(itemToAdd);
-                currentTxtDisplay.setVisibility(View.VISIBLE);
+
+                if (!(items.contains(itemToAdd))) {
+                    items.add(itemToAdd);
+                }
+
+                for(int i = 0; i < items.size(); i++) {
+                    textViews.get(i).setText(items.get(i));
+                }
             }
         }
     }
 
-    // POSSIBLE SOURCE OF PROBLEM!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
     @Override
     public void onSaveInstanceState(Bundle outState) {
         super.onSaveInstanceState(outState);
-        // If the heading is visible, message needs to be saved.
-        // Otherwise we're still using default layout.
-        if (currentTxtDisplay.getVisibility() == View.VISIBLE) {
-            outState.putBoolean("itemToAdd_visible", true);
-            outState.putString("itemToAdd_text", currentTxtDisplay.getText().toString());
-        }
+
+        outState.putSerializable("array", items);
     }
 
 
     @Override
-    public void onStart(){
+    public void onStart() {
         super.onStart();
         Log.d(LOG_TAG, "onStart");
     }
@@ -136,6 +94,9 @@ public class MainActivity extends AppCompatActivity {
     protected void onStop() {
         super.onStop();
         Log.d(LOG_TAG, "onStop");
+        for(int i = 0; i < items.size(); i++) {
+            textViews.get(i).setText(items.get(i));
+        }
     }
 
 
@@ -143,6 +104,9 @@ public class MainActivity extends AppCompatActivity {
     protected void onDestroy() {
         super.onDestroy();
         Log.d(LOG_TAG, "onDestroy");
+        for(int i = 0; i < items.size(); i++) {
+            textViews.get(i).setText(items.get(i));
+        }
     }
 
 
@@ -150,6 +114,9 @@ public class MainActivity extends AppCompatActivity {
     protected void onPause() {
         super.onPause();
         Log.d(LOG_TAG, "onPause");
+        for(int i = 0; i < items.size(); i++) {
+            textViews.get(i).setText(items.get(i));
+        }
     }
 
 
@@ -157,6 +124,9 @@ public class MainActivity extends AppCompatActivity {
     protected void onResume() {
         super.onResume();
         Log.d(LOG_TAG, "onResume");
+        for(int i = 0; i < items.size(); i++) {
+            textViews.get(i).setText(items.get(i));
+        }
     }
 
 
@@ -164,5 +134,8 @@ public class MainActivity extends AppCompatActivity {
     protected void onRestart() {
         super.onRestart();
         Log.d(LOG_TAG, "onRestart");
+        for(int i = 0; i < items.size(); i++) {
+            textViews.get(i).setText(items.get(i));
+        }
     }
 }

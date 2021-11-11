@@ -8,6 +8,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 
+
 public class SecondActivity extends AppCompatActivity {
 
     private static final String LOG_TAG = SecondActivity.class.getSimpleName();
@@ -23,7 +24,7 @@ public class SecondActivity extends AppCompatActivity {
 
 
     public void returnItem(View view) {
-        switch (view.getId()){
+        switch (view.getId()) {
             case R.id.btn_one_cheese:
                 sendingButton = findViewById(R.id.btn_one_cheese);
                 break;
@@ -68,7 +69,7 @@ public class SecondActivity extends AppCompatActivity {
 
 
     @Override
-    public void onStart(){
+    public void onStart() {
         super.onStart();
         Log.d(LOG_TAG, "onStart");
     }
